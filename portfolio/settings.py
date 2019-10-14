@@ -24,8 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+jq$7v2i1^eqd^vx#&g$=3%^r)3^+zcf#p-6y1a-a(#qss!&&y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -78,8 +79,13 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'portfoliodb',
+        'USER': 'postgres',
+        'PASSWORD': 'Nabil151994',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -131,21 +137,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
-
-
-# Allow all host hosts/domain names for this site
-ALLOWED_HOSTS = ['*']
-
-# Parse database configuration from $DATABASE_URL
-
-DATABASES = { 'default' : dj_database_url.config()}
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# try to load local_settings.py if it exists
-try:
-  from local_settings import *
-except Exception as e:
-  pass
+ALLOWED_HOSTS=['*']
